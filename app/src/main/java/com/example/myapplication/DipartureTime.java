@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class DipartureTime {
 
@@ -59,15 +61,32 @@ public class DipartureTime {
             ,"00:10","00:16","00:38"));
 
     public String getDipartureKawasaki(){
-        return dipartureKawasaki;
+        TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        sdf.setTimeZone(tz);
+        Calendar cal = Calendar.getInstance();
+        String tmp = sdf.format(cal.getTime());
+        return tmp;
     }
 
     public String getDipartureTachikawa(){
         return dipartureTachikawa;
     }
 
+    private Calendar transData(String str){
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        Calendar cal = Calendar.getInstance();
+        String tmp = sdf.format(cal.getTime());
+
+        return cal;
+    }
+
     public void serchTimeKawasaki(){
         Calendar now = Calendar.getInstance();
-        
+
+        for(String time: timeTableKawasaki){
+
+        }
+
     }
 }

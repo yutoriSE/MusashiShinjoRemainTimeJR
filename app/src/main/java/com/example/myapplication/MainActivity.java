@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.view.View;
+import android.os.CountDownTimer;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textView;
-    private boolean flag = false;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Kawasaki
         TextView dipartureTimeKawasaki = findViewById(R.id.departureTimeKawasaki);
-        TextView remainingTimeKawasaki = findViewById(R.id.remainingTimeKawasaki);
+        final TextView remainingTimeKawasaki = findViewById(R.id.remainingTimeKawasaki);
         EditText notifyTimeKawasaki = findViewById(R.id.notifyTimeKawasaki);
         Button buttonNextKawasaki = findViewById(R.id.buttonNextKawasaki);
         Button buttonSetNotifyKawasaki = findViewById(R.id.buttonSetNotifyKawasaki);
@@ -31,6 +31,25 @@ public class MainActivity extends AppCompatActivity {
         Button buttonNextTachikawa = findViewById(R.id.buttonNextTachikawa);
         Button buttonSetNotifyTachikawa = findViewById(R.id.buttonSetNotifyTachikawa);
 
+        DipartureTime dipTime = new DipartureTime();
 
+        dipartureTimeKawasaki.setText(dipTime.getDipartureKawasaki());
+
+        countDownTimer = new CountDownTimer(3000000, 100){
+          @Override
+          public void onFinish(){
+              remainingTimeKawasaki.setText("diparture");
+          }
+
+          @Override
+          public void onTick(long millisUntilFinished){
+              long mm = millisUntilFinished / 1000 / 60;
+              long ss = millisUntilFinished / 1000 % 60;
+              long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
+              String remain = String.valueOf(mm) + ":" + String.valueOf(ss) + "." + String.valueOf(ms);
+              remainingTimeKawasaki.setText(remain);
+          }
+        };
+        countDownTimer.start();
     }
 }
