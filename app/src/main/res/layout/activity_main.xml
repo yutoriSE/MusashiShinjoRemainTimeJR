@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A5A5A5"
+    tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_kawasaki"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="@color/cardview_dark_background"
+        tools:layout_editor_absoluteX="3dp"
+        android:layout_marginTop="30dp"
+        tools:layout_editor_absoluteY="58dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_shadow_end_color"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/titleKawasaki"
+                android:layout_width="129dp"
+                android:layout_height="40dp"
+                android:text="川崎方面"
+                android:textSize="30dp"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/departureTimeKawasaki"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@id/textKawasaki1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:text="00:00"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/textKawasaki1"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@id/buttonNextKawasaki"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:text="発"
+                android:textSize="17dp"
+                />
+
+
+            <Button
+                android:id="@+id/buttonNextKawasaki"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:text="次の時刻"
+                android:textSize="10dp"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:layout_width="129dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/titleKawasaki"
+                android:layout_marginTop="50dp"
+                android:text="発車まであと"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/remainingTimeKawasaki"
+                android:layout_width="250dp"
+                android:layout_height="65dp"
+                android:text="00:00:00"
+                android:textSize="60dp"
+                android:textColor="#00FF00"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/notifyKawasaki"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="240dp"
+                android:text="通知設定"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/notifyTimeKawasaki"
+                android:selectAllOnFocus="true"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="235dp"
+                android:text="5"
+                android:textColorHint="#A5A5A5"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:gravity="right|center_vertical"
+                android:layout_toRightOf="@id/notifyKawasaki"
+                android:layout_marginLeft="30dp"
+                android:inputType="number"
+                />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="240dp"
+                android:layout_toRightOf="@id/notifyTimeKawasaki"
+                android:layout_marginLeft="5dp"
+                android:text="分前"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="設定"
+                android:textSize="20dp"
+                android:layout_marginTop="230dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_alignBottom="@id/card_kawasaki"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-360dp"
+        app:cardBackgroundColor="@color/cardview_dark_background">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_shadow_end_color"
+            tools:context=".MainActivity">
+
+            <TextView
+                android:id="@+id/titleTachikawa"
+                android:layout_width="129dp"
+                android:layout_height="40dp"
+                android:text="立川方面"
+                android:textSize="30dp"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/departureTimeTachikawa"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@id/textTachikawa1"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:text="00:00"
+                android:textSize="20dp"
+                />
+
+            <TextView
+                android:id="@+id/textTachikawa1"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_toLeftOf="@id/buttonNextTachikawa"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:text="発"
+                android:textSize="17dp"
+                />
+
+
+            <Button
+                android:id="@+id/buttonNextTachikawa"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:text="次の時刻"
+                android:textSize="10dp"
+                android:layout_alignParentRight="true"
+                />
+
+            <TextView
+                android:layout_width="129dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/titleTachikawa"
+                android:layout_marginTop="50dp"
+                android:text="発車まであと"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="65dp"
+                android:text="00:00:00"
+                android:textSize="60dp"
+                android:textColor="#00FF00"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                />
+
+            <TextView
+                android:id="@+id/notifyTachikawa"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="240dp"
+                android:text="通知設定"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/notifyTimeTachikawa"
+                android:selectAllOnFocus="true"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="235dp"
+                android:text="5"
+                android:textColorHint="#A5A5A5"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:gravity="right|center_vertical"
+                android:layout_toRightOf="@id/notifyTachikawa"
+                android:layout_marginLeft="30dp"
+                android:inputType="number"
+                />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="240dp"
+                android:layout_toRightOf="@id/notifyTimeTachikawa"
+                android:layout_marginLeft="5dp"
+                android:text="分前"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:text="設定"
+                android:textSize="20dp"
+                android:layout_marginTop="230dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
