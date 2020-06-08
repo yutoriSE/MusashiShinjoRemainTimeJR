@@ -13,7 +13,8 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CountDownTimer countDownTimer;
+    private CountDownTimer countDownTimerKawasaki;
+    private CountDownTimer countDownTimerTachikawa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Tachikawa
         TextView dipartureTimeTachikawa = findViewById(R.id.departureTimeTachikawa);
-        TextView remainingTimeTachikawa = findViewById(R.id.remainingTimeTachikawa);
+        final TextView remainingTimeTachikawa = findViewById(R.id.remainingTimeTachikawa);
         EditText notifyTimeTachikawa = findViewById(R.id.notifyTimeTachikawa);
         Button buttonNextTachikawa = findViewById(R.id.buttonNextTachikawa);
         Button buttonSetNotifyTachikawa = findViewById(R.id.buttonSetNotifyTachikawa);
@@ -38,23 +39,41 @@ public class MainActivity extends AppCompatActivity {
 
         dipartureTimeKawasaki.setText(dipTime.getDipartureKawasaki());
 
-        countDownTimer = new CountDownTimer(36000, 100){
-          @Override
-          public void onFinish(){
-              remainingTimeKawasaki.setText("diparture");
-          }
+        countDownTimerKawasaki = new CountDownTimer(36000, 100){
+            @Override
+            public void onFinish(){
+                remainingTimeKawasaki.setText("diparture");
+            }
 
-          @Override
-          public void onTick(long millisUntilFinished){
-              long mm = millisUntilFinished / 1000 / 60;
-              long ss = millisUntilFinished / 1000 % 60;
-              long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
+            @Override
+            public void onTick(long millisUntilFinished){
+                long mm = millisUntilFinished / 1000 / 60;
+                long ss = millisUntilFinished / 1000 % 60;
+                long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
 
-              String remain = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + String.valueOf(ms);
-              remainingTimeKawasaki.setText(remain);
-          }
+                String remain = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + String.valueOf(ms);
+                remainingTimeKawasaki.setText(remain);
+            }
         };
-        countDownTimer.start();
+        countDownTimerKawasaki.start();
+
+        countDownTimerTachikawa = new CountDownTimer(50000, 100){
+            @Override
+            public void onFinish(){
+                remainingTimeTachikawa.setText("diparture");
+            }
+
+            @Override
+            public void onTick(long millisUntilFinished){
+                long mm = millisUntilFinished / 1000 / 60;
+                long ss = millisUntilFinished / 1000 % 60;
+                long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
+
+                String remain = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + String.valueOf(ms);
+                remainingTimeTachikawa.setText(remain);
+            }
+        };
+        countDownTimerTachikawa.start();
     }
 
     //頭に０を足す
