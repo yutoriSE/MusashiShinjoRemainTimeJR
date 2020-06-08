@@ -7,6 +7,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.os.CountDownTimer;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         dipartureTimeKawasaki.setText(dipTime.getDipartureKawasaki());
 
-        countDownTimer = new CountDownTimer(3000000, 100){
+        countDownTimer = new CountDownTimer(36000, 100){
           @Override
           public void onFinish(){
               remainingTimeKawasaki.setText("diparture");
@@ -46,10 +49,19 @@ public class MainActivity extends AppCompatActivity {
               long mm = millisUntilFinished / 1000 / 60;
               long ss = millisUntilFinished / 1000 % 60;
               long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
-              String remain = String.valueOf(mm) + ":" + String.valueOf(ss) + "." + String.valueOf(ms);
+
+              String remain = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + String.valueOf(ms);
               remainingTimeKawasaki.setText(remain);
           }
         };
         countDownTimer.start();
+    }
+
+    //頭に０を足す
+    public String addZero(String str){
+        if(str.length()==1){
+            str = "0" + str;
+        }
+        return str;
     }
 }
