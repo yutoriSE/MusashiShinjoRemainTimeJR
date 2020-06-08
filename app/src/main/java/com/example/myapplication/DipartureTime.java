@@ -20,6 +20,6 @@ public class DipartureTime {
     }
 
     public void serchTimeKawasaki(Calendar now){
-
+        System.out.println();
     }
 }
