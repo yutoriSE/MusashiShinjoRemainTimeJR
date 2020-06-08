@@ -12,14 +12,18 @@ public class DipartureTime {
     }
 
     public String getTimeKawasaki(){
+
+
         return timeKawasaki;
     }
 
     public String getTachikawa(){
+
         return timeTachikawa;
     }
 
     public void serchTimeKawasaki(Calendar now){
+
         System.out.println();
     }
 }
