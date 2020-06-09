@@ -4,12 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.TimeZone;
+import java.time.LocalTime;
+import java.time.Duration;
 
 public class DipartureTime {
 
-    private String dipartureKawasaki = "00:00";
-    private String dipartureTachikawa = "12:00";
+    private int dipartureKawasaki;
+    private int dipartureTachikawa;
 
     private ArrayList<String> timeTableKawasaki = new ArrayList<>(Arrays.asList(
             "05:06","05:25", "05:39","05:52"
@@ -30,7 +33,7 @@ public class DipartureTime {
             ,"18:02","18:08","18:12","18:17","18:22","18:26","18:33","18:39","18:42","18:48","18:51","18:57"
             ,"19:03","19:09","19:12","19:18","19:23","19:31","19:36","19:40","19:43","19:48","19:54"
             ,"20:02","20:10","20:15","20:22","20:31","20:37","20:46","20:52"
-            ,"21:02","21:10","21:16","21:23","21:28","21:37","21:47","2q:51","21:56"
+            ,"21:02","21:10","21:16","21:23","21:28","21:37","21:47","21:51","21:56"
             ,"22:03","22:12","22:19","22:24","22:34","22:45","22:56"
             ,"23:06","23:14","23:20","23:26","23:34","23:48","23:54"
             ,"00:10","00:33","00:50")) ;
@@ -55,38 +58,93 @@ public class DipartureTime {
             ,"18:04","18:10","18:15","18:20","18:25","18:27","18:34","18:40","18:45","18:50","18:55","18:57"
             ,"19:04","19:10","19:15","19:20","19:25","19:27","19:34","19:40","19:45","19:50","19:55"
             ,"20:00","20:06","20:13","20:22","20:27","20:34","20:40","20:46","20:53"
-            ,"21:00","21:05","21:13","21:19","21:28","21:34","21:43","2q:51","21:57"
+            ,"21:00","21:05","21:13","21:19","21:28","21:34","21:43","21:51","21:57"
             ,"22:04","22:11","22:18","22:27","22:36","22:43","22:50","22:59"
             ,"23:08","23:22","23:30","23:38","23:49","23:58"
             ,"00:10","00:16","00:38"));
 
     public String getDipartureKawasaki(){
-        TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
-        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
-        sdf.setTimeZone(tz);
-        Calendar cal = Calendar.getInstance();
-        String tmp = sdf.format(cal.getTime());
-        return tmp;
+        return timeTableKawasaki.get(dipartureKawasaki);
     }
 
     public String getDipartureTachikawa(){
-        return dipartureTachikawa;
+        return timeTableTachikawa.get(dipartureTachikawa);
     }
+    
 
-    private Calendar transData(String str){
-        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
-        Calendar cal = Calendar.getInstance();
-        String tmp = sdf.format(cal.getTime());
-
-        return cal;
-    }
-
+    //現時刻に該当する時間のインデックスをセット
     public void serchTimeKawasaki(){
         Calendar now = Calendar.getInstance();
+        TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        sdf.setTimeZone(tz);
+        String nowStr = sdf.format(now.getTime());
 
-        for(String time: timeTableKawasaki){
+        for(int i=0; i<timeTableKawasaki.size(); i++){
 
+            LocalTime nowLocal = LocalTime.parse(nowStr);
+            LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(i));
+            long delta = Duration.between(timeLocal, nowLocal).toMinutes();
+       
+            if(delta <= 0){
+                if(i == 0){
+                    dipartureKawasaki = 0;
+                    break;
+                }
+                dipartureKawasaki = i;
+                break;
+            }
         }
+    }
 
+    //現時刻に該当する時間のインデックスをセット
+    public void serchTimeTachikawa(){
+        Calendar now = Calendar.getInstance();
+        TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        sdf.setTimeZone(tz);
+        String nowStr = sdf.format(now.getTime());
+
+        for(int i=0; i<timeTableTachikawa.size(); i++){
+
+            LocalTime nowLocal = LocalTime.parse(nowStr);
+            LocalTime timeLocal = LocalTime.parse(timeTableTachikawa.get(i));
+            long delta = Duration.between(timeLocal, nowLocal).toMinutes();
+
+            if(delta <= 0){
+                if(i == 0){
+                    dipartureTachikawa = 0;
+                    break;
+                }
+                dipartureTachikawa = i;
+                break;
+            }
+        }
+    }
+
+    //残り時間計算
+    public long calcRemainKawasaki(){
+        Calendar now = Calendar.getInstance();
+        TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        sdf.setTimeZone(tz);
+        String nowStr = sdf.format(now.getTime());
+
+        LocalTime nowLocal = LocalTime.parse(nowStr);
+        LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(dipartureKawasaki));
+        return Duration.between(nowLocal, timeLocal).toMillis();
+    }
+
+    //残り時間計算
+    public long calcRemainTachikawa(){
+        Calendar now = Calendar.getInstance();
+        TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        sdf.setTimeZone(tz);
+        String nowStr = sdf.format(now.getTime());
+
+        LocalTime nowLocal = LocalTime.parse(nowStr);
+        LocalTime timeLocal = LocalTime.parse(timeTableTachikawa.get(dipartureTachikawa));
+        return Duration.between(nowLocal, timeLocal).toMillis();
     }
 }
