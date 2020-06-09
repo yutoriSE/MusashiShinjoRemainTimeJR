@@ -87,7 +87,7 @@ public class DipartureTime {
             LocalTime nowLocal = LocalTime.parse(nowStr);
             LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(i));
             long delta = Duration.between(timeLocal, nowLocal).toMinutes();
-       
+
             if(delta <= 2){
                 if(i == 0){
                     dipartureKawasaki = 0;
@@ -106,7 +106,7 @@ public class DipartureTime {
         SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
         sdf.setTimeZone(tz);
         String nowStr = sdf.format(now.getTime());
-        System.out.println(nowStr);
+
         for(int i=0; i<timeTableTachikawa.size(); i++){
 
             LocalTime nowLocal = LocalTime.parse(nowStr);

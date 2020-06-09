@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //初期時間処理（川崎）
         final DipartureTime dipTimeKawasaki = new DipartureTime();
         dipTimeKawasaki.serchTimeKawasaki();
-        dipartureTimeKawasaki.setText(dipTimeKawasaki.getDipartureKawasaki());
+        //dipartureTimeKawasaki.setText(dipTimeKawasaki.getDipartureKawasaki());
         remainKawasaki = dipTimeKawasaki.calcRemainKawasaki();
 
         //川崎方面のカウントダウンタイマー
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         //初期時間処理（立川）
         final DipartureTime dipTimeTachikawa = new DipartureTime();
         dipTimeTachikawa.serchTimeTachikawa();
-        dipartureTimeTachikawa.setText(dipTimeTachikawa.getDipartureTachikawa());
+        //dipartureTimeTachikawa.setText(dipTimeTachikawa.getDipartureTachikawa());
         remainTachikawa = dipTimeTachikawa.calcRemainTachikawa();
 
         //立川方面のカウントダウンタイマー
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("do");
+                //System.out.println(dipTimeKawasaki.getDipartureKawasaki());
                 dipTimeKawasaki.serchTimeKawasaki();
                 dipartureTimeKawasaki.setText(dipTimeKawasaki.getDipartureKawasaki());
                 remainKawasaki = dipTimeKawasaki.calcRemainKawasaki();
