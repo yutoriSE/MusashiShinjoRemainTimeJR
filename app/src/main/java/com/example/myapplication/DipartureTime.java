@@ -15,7 +15,8 @@ public class DipartureTime {
     private int dipartureTachikawa;
 
     private ArrayList<String> timeTableKawasaki = new ArrayList<>(Arrays.asList(
-            "05:06","05:25", "05:39","05:52"
+            "00:10","00:33","00:50"
+            ,"05:06","05:25", "05:39","05:52"
             ,"06:01","06:10","06:20","06:27","06:32","06:37","06:42","06:49","06:52"
             ,"07:00","07:04","07:08","07:13","07:18","07:22","07:27","07:30","07:30"
             ,"07:32","07:35","07:37","07:40","07:42","07:45","07:47","07:50","07:52","07:55","07:57"
@@ -36,10 +37,11 @@ public class DipartureTime {
             ,"21:02","21:10","21:16","21:23","21:28","21:37","21:47","21:51","21:56"
             ,"22:03","22:12","22:19","22:24","22:34","22:45","22:56"
             ,"23:06","23:14","23:20","23:26","23:34","23:48","23:54"
-            ,"00:10","00:33","00:50")) ;
+            )) ;
 
     private ArrayList<String> timeTableTachikawa = new ArrayList<>(Arrays.asList(
-            "04:39","04:45","05:05","05:23", "05:32","05:36","05:43","05:47","05:56"
+            "00:10","00:16","00:38"
+            ,"04:39","04:45","05:05","05:23", "05:32","05:36","05:43","05:47","05:56"
             ,"06:01","06:05","06:10","06:13","06:17","06:23","06:27","06:30","06:34"
             ,"06:38","06:41","06:44","06:47","06:51","06:56","06:59"
             ,"07:03","07:09","07:13","07:16","07:20","07:24","07:27","07:30","07:33"
@@ -61,7 +63,7 @@ public class DipartureTime {
             ,"21:00","21:05","21:13","21:19","21:28","21:34","21:43","21:51","21:57"
             ,"22:04","22:11","22:18","22:27","22:36","22:43","22:50","22:59"
             ,"23:08","23:22","23:30","23:38","23:49","23:58"
-            ,"00:10","00:16","00:38"));
+            ));
 
     public String getDipartureKawasaki(){
         return timeTableKawasaki.get(dipartureKawasaki);
@@ -86,7 +88,7 @@ public class DipartureTime {
             LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(i));
             long delta = Duration.between(timeLocal, nowLocal).toMinutes();
        
-            if(delta <= 0){
+            if(delta <= 2){
                 if(i == 0){
                     dipartureKawasaki = 0;
                     break;
@@ -104,14 +106,14 @@ public class DipartureTime {
         SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
         sdf.setTimeZone(tz);
         String nowStr = sdf.format(now.getTime());
-
+        System.out.println(nowStr);
         for(int i=0; i<timeTableTachikawa.size(); i++){
 
             LocalTime nowLocal = LocalTime.parse(nowStr);
             LocalTime timeLocal = LocalTime.parse(timeTableTachikawa.get(i));
             long delta = Duration.between(timeLocal, nowLocal).toMinutes();
 
-            if(delta <= 0){
+            if(delta <= 2){
                 if(i == 0){
                     dipartureTachikawa = 0;
                     break;

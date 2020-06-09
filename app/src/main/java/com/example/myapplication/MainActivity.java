@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonSetNotifyKawasaki = findViewById(R.id.buttonSetNotifyKawasaki);
 
         //Tachikawa
-        TextView dipartureTimeTachikawa = findViewById(R.id.departureTimeTachikawa);
+        final TextView dipartureTimeTachikawa = findViewById(R.id.departureTimeTachikawa);
         final TextView remainingTimeTachikawa = findViewById(R.id.remainingTimeTachikawa);
         EditText notifyTimeTachikawa = findViewById(R.id.notifyTimeTachikawa);
         Button buttonNextTachikawa = findViewById(R.id.buttonNextTachikawa);
@@ -74,9 +74,8 @@ public class MainActivity extends AppCompatActivity {
         //立川方面のカウントダウンタイマー
         countDownTimerTachikawa = new CountDownTimer(remainTachikawa, 100){
             @Override
-            public void onFinish(){
-
-                remainingTimeTachikawa.setText("diparture");
+            public void onFinish() {
+                countDownTimerTachikawa.start();
             }
 
             @Override
@@ -91,9 +90,26 @@ public class MainActivity extends AppCompatActivity {
         };
 
         countDownTimerKawasaki.start();
-        dipTimeTachikawa.serchTimeTachikawa();
-        dipartureTimeTachikawa.setText(dipTimeTachikawa.getDipartureTachikawa());
         countDownTimerTachikawa.start();
+
+        //timer
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("do");
+                dipTimeKawasaki.serchTimeKawasaki();
+                dipartureTimeKawasaki.setText(dipTimeKawasaki.getDipartureKawasaki());
+                remainKawasaki = dipTimeKawasaki.calcRemainKawasaki();
+
+                dipTimeTachikawa.serchTimeTachikawa();
+                dipartureTimeTachikawa.setText(dipTimeTachikawa.getDipartureTachikawa());
+                remainTachikawa = dipTimeTachikawa.calcRemainTachikawa();
+            }
+        };
+
+        Timer timer = new Timer();
+        timer.schedule(task, 0,100);
+
     }
 
     //時間記述の０パディング
