@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.os.CountDownTimer;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         Button buttonSetNotifyTachikawa = findViewById(R.id.buttonSetNotifyTachikawa);
 
         //初期時間処理（川崎）
-        final DipartureTime dipTimeKawasaki = new DipartureTime();
-        dipTimeKawasaki.serchTimeKawasaki();
+        final DipartureTime dtK = new DipartureTime();
+        dtK.serchTimeKawasaki();
         //dipartureTimeKawasaki.setText(dipTimeKawasaki.getDipartureKawasaki());
-        remainKawasaki = dipTimeKawasaki.calcRemainKawasaki();
+        remainKawasaki = dtK.calcRemainKawasaki();
 
         //川崎方面のカウントダウンタイマー
         countDownTimerKawasaki = new CountDownTimer(remainKawasaki, 100){
@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //初期時間処理（立川）
-        final DipartureTime dipTimeTachikawa = new DipartureTime();
-        dipTimeTachikawa.serchTimeTachikawa();
+        final DipartureTime dtT = new DipartureTime();
+        dtT.serchTimeTachikawa();
         //dipartureTimeTachikawa.setText(dipTimeTachikawa.getDipartureTachikawa());
-        remainTachikawa = dipTimeTachikawa.calcRemainTachikawa();
+        remainTachikawa = dtT.calcRemainTachikawa();
 
         //立川方面のカウントダウンタイマー
         countDownTimerTachikawa = new CountDownTimer(remainTachikawa, 100){
@@ -96,19 +96,20 @@ public class MainActivity extends AppCompatActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                //System.out.println(dipTimeKawasaki.getDipartureKawasaki());
-                dipTimeKawasaki.serchTimeKawasaki();
-                dipartureTimeKawasaki.setText(dipTimeKawasaki.getDipartureKawasaki());
-                remainKawasaki = dipTimeKawasaki.calcRemainKawasaki();
+                Date date = new Date();
+                System.out.println(date);
+                dtK.serchTimeKawasaki();//次の発車時刻インデックスを更新
+                dipartureTimeKawasaki.setText(dtK.getDipartureKawasaki());
+                remainKawasaki = dtK.calcRemainKawasaki();
 
-                dipTimeTachikawa.serchTimeTachikawa();
-                dipartureTimeTachikawa.setText(dipTimeTachikawa.getDipartureTachikawa());
-                remainTachikawa = dipTimeTachikawa.calcRemainTachikawa();
+                dtT.serchTimeTachikawa();
+                dipartureTimeTachikawa.setText(dtT.getDipartureTachikawa());
+                remainTachikawa = dtT.calcRemainTachikawa();
             }
         };
 
         Timer timer = new Timer();
-        timer.schedule(task, 0,100);
+        timer.schedule(task, 0,5000);
 
     }
 

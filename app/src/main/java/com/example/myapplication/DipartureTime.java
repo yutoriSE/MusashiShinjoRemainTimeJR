@@ -14,8 +14,13 @@ public class DipartureTime {
     private int dipartureKawasaki;
     private int dipartureTachikawa;
 
+    public DipartureTime(){
+        this.dipartureKawasaki = 0;
+        this.dipartureTachikawa = 0;
+    }
+
     private ArrayList<String> timeTableKawasaki = new ArrayList<>(Arrays.asList(
-            "00:10","00:33","00:50"
+            "00:10","00:33","00:50","02:29","02:31"
             ,"05:06","05:25", "05:39","05:52"
             ,"06:01","06:10","06:20","06:27","06:32","06:37","06:42","06:49","06:52"
             ,"07:00","07:04","07:08","07:13","07:18","07:22","07:27","07:30","07:30"
@@ -66,11 +71,11 @@ public class DipartureTime {
             ));
 
     public String getDipartureKawasaki(){
-        return timeTableKawasaki.get(dipartureKawasaki);
+        return timeTableKawasaki.get(this.dipartureKawasaki);
     }
 
     public String getDipartureTachikawa(){
-        return timeTableTachikawa.get(dipartureTachikawa);
+        return timeTableTachikawa.get(this.dipartureTachikawa);
     }
     
 
@@ -88,12 +93,12 @@ public class DipartureTime {
             LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(i));
             long delta = Duration.between(timeLocal, nowLocal).toMinutes();
 
-            if(delta <= 2){
+            if(delta < -1){
                 if(i == 0){
-                    dipartureKawasaki = 0;
+                    this.dipartureKawasaki = 0;
                     break;
                 }
-                dipartureKawasaki = i;
+                this.dipartureKawasaki = i;
                 break;
             }
         }
@@ -113,12 +118,12 @@ public class DipartureTime {
             LocalTime timeLocal = LocalTime.parse(timeTableTachikawa.get(i));
             long delta = Duration.between(timeLocal, nowLocal).toMinutes();
 
-            if(delta <= 2){
+            if(delta <= 1){
                 if(i == 0){
-                    dipartureTachikawa = 0;
+                    this.dipartureTachikawa = 0;
                     break;
                 }
-                dipartureTachikawa = i;
+                this.dipartureTachikawa = i;
                 break;
             }
         }
@@ -133,7 +138,7 @@ public class DipartureTime {
         String nowStr = sdf.format(now.getTime());
 
         LocalTime nowLocal = LocalTime.parse(nowStr);
-        LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(dipartureKawasaki));
+        LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(this.dipartureKawasaki));
         return Duration.between(nowLocal, timeLocal).toMillis();
     }
 
@@ -146,7 +151,7 @@ public class DipartureTime {
         String nowStr = sdf.format(now.getTime());
 
         LocalTime nowLocal = LocalTime.parse(nowStr);
-        LocalTime timeLocal = LocalTime.parse(timeTableTachikawa.get(dipartureTachikawa));
+        LocalTime timeLocal = LocalTime.parse(timeTableTachikawa.get(this.dipartureTachikawa));
         return Duration.between(nowLocal, timeLocal).toMillis();
     }
 }
