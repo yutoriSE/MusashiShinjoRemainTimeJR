@@ -20,7 +20,7 @@ public class DipartureTime {
     }
 
     private ArrayList<String> timeTableKawasaki = new ArrayList<>(Arrays.asList(
-            "00:10","00:33","00:50","02:29","02:31"
+            "00:10","00:33","00:50","02:44","02:46"
             ,"05:06","05:25", "05:39","05:52"
             ,"06:01","06:10","06:20","06:27","06:32","06:37","06:42","06:49","06:52"
             ,"07:00","07:04","07:08","07:13","07:18","07:22","07:27","07:30","07:30"
@@ -93,7 +93,7 @@ public class DipartureTime {
             LocalTime timeLocal = LocalTime.parse(timeTableKawasaki.get(i));
             long delta = Duration.between(timeLocal, nowLocal).toMinutes();
 
-            if(delta < -1){
+            if(delta <= -1){
                 if(i == 0){
                     this.dipartureKawasaki = 0;
                     break;
@@ -118,7 +118,7 @@ public class DipartureTime {
             LocalTime timeLocal = LocalTime.parse(timeTableTachikawa.get(i));
             long delta = Duration.between(timeLocal, nowLocal).toMinutes();
 
-            if(delta <= 1){
+            if(delta < -1){
                 if(i == 0){
                     this.dipartureTachikawa = 0;
                     break;
