@@ -1,10 +1,9 @@
-package com.example.myapplication;
+package com.example.MusashiShinjoRemainTimeJR;
 
 
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.util.Log;
 
 public abstract class MyCountDownTimer {
 

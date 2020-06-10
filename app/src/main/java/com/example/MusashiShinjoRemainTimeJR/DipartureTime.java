@@ -1,10 +1,9 @@
-package com.example.myapplication;
+package com.example.MusashiShinjoRemainTimeJR;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Locale;
 import java.util.TimeZone;
 import java.time.LocalTime;
 import java.time.Duration;
@@ -20,7 +19,7 @@ public class DipartureTime {
     }
 
     private ArrayList<String> timeTableKawasaki = new ArrayList<>(Arrays.asList(
-            "00:10","00:33","00:50","01:47","01:48"
+            "00:10","00:33","00:50"
             ,"05:06","05:25", "05:39","05:52"
             ,"06:01","06:10","06:20","06:27","06:32","06:37","06:42","06:49","06:52"
             ,"07:00","07:04","07:08","07:13","07:18","07:22","07:27","07:30","07:30"
