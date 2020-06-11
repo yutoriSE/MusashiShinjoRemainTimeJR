@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 long ss = millisUntilFinished / 1000 % 60;
                 long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
 
-                String remainStr = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + String.valueOf(ms);
+                String remainStr = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + String.valueOf(ms).substring(0, 1);
                 remainingTimeKawasaki.setText(remainStr);//タイマーの残り時間を再セット
             }
 
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 long ss = millisUntilFinished / 1000 % 60;
                 long ms = millisUntilFinished - ss * 1000 - mm * 1000 * 60;
 
-                String remainStr = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + addZero(String.valueOf(ms));
+                String remainStr = addZero(String.valueOf(mm)) + ":" + addZero(String.valueOf(ss)) + "." + String.valueOf(ms).substring(0, 1);
                 remainingTimeTachikawa.setText(remainStr);
             }
         }.start();
