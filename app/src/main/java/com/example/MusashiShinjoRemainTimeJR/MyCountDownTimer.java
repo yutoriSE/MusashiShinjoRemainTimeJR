@@ -7,27 +7,11 @@ import android.os.SystemClock;
 
 public abstract class MyCountDownTimer {
 
-    /**
-     * Millis since epoch when alarm should stop.
-     */
     private long mMillisInFuture;
-
-    /**
-     * The interval in millis that the user receives callbacks
-     */
     private long mCountdownInterval;
-
     private long mStopTimeInFuture;
 
 
-
-    /**
-     * @param millisInFuture The number of millis in the future from the call
-     *   to {@link #start()} until the countdown is done and {@link #onFinish()}
-     *   is called.
-     * @param countDownInterval The interval along the way to receive
-     *   {@link #onTick(long)} callbacks.
-     */
     public MyCountDownTimer(long millisInFuture, long countDownInterval) {
         mMillisInFuture = millisInFuture;
         mCountdownInterval = countDownInterval;
@@ -41,16 +25,11 @@ public abstract class MyCountDownTimer {
         this.mCountdownInterval = countdownInterval;
     }
 
-    /**
-     * Cancel the countdown.
-     */
     public final void cancel() {
         mHandler.removeMessages(MSG);
     }
 
-    /**
-     * Start the countdown.
-     */
+
     public synchronized final MyCountDownTimer start() {
         if (mMillisInFuture <= 0) {
             onFinish();
@@ -61,16 +40,9 @@ public abstract class MyCountDownTimer {
         return this;
     }
 
-
-    /**
-     * Callback fired on regular interval.
-     * @param millisUntilFinished The amount of time until finished.
-     */
     public abstract void onTick(long millisUntilFinished);
 
-    /**
-     * Callback fired when the time is up.
-     */
+
     public abstract void onFinish();
 
 
