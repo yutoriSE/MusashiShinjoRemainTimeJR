@@ -132,7 +132,8 @@ public class DipartureTime {
     public long calcRemainKawasaki(){
         Calendar now = Calendar.getInstance();
         TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
-        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm:ss"));
+
         sdf.setTimeZone(tz);
         String nowStr = sdf.format(now.getTime());
 
@@ -145,7 +146,7 @@ public class DipartureTime {
     public long calcRemainTachikawa(){
         Calendar now = Calendar.getInstance();
         TimeZone tz = TimeZone.getTimeZone("Asia/Tokyo");
-        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm"));
+        SimpleDateFormat sdf = new SimpleDateFormat(("HH:mm:ss"));
         sdf.setTimeZone(tz);
         String nowStr = sdf.format(now.getTime());
 
