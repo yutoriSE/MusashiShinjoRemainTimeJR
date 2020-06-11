@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int timeBiasKawasaki;
-    private int timeBiasTachikawa;
     private long remainKawasaki;
     private long remainTachikawa;
 
